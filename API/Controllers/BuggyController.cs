@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     public class BuggyController : BaseApiController
-       
+
     {
-         private readonly StoreContext _context;
+        private readonly StoreContext _context;
 
         public BuggyController(StoreContext context)
         {
@@ -24,7 +24,7 @@ namespace API.Controllers
             var thing = _context.Products.Find(42);
             if (thing == null)
             {
-                return NotFound(new ApiResponse (404));
+                return NotFound(new ApiResponse(404));
             }
             return Ok();
         }
@@ -33,17 +33,17 @@ namespace API.Controllers
         public ActionResult GetServerError()
         {
             var thing = _context.Products.Find(42);
-            var thingToReturn=thing.ToString();
+            var thingToReturn = thing.ToString();
             return Ok();
         }
 
-        [HttpGet("bad request")]
+        [HttpGet("badrequest")]
         public ActionResult GetBadRequest()
         {
-           return BadRequest(new ApiResponse(400));
+            return BadRequest(new ApiResponse(400));
         }
 
-        [HttpGet("bad request/{id}")]
+        [HttpGet("badrequest/{id}")]
         public ActionResult GetNotFoundRequest(int id)
         {
             return Ok();
